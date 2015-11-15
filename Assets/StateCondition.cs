@@ -5,7 +5,7 @@ public abstract class StateCondition : MonoBehaviour {
 	public ScWizard wizard;
 	
 	//Will check the condition and return a bool specifying if we should change our current FSM Node. True is yes and false is no.
-	public bool checkCondition(GameObject thisObject);
+	public abstract bool checkCondition(GameObject thisObject, MonoBehaviour thisScript);
 	
 	// Use this for initialization
 	void Start () {

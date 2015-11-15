@@ -15,10 +15,10 @@ public class StateNode {
 	}
 
 	//Will tell you the state node you should change to if needed
-	public StateNode checkState(GameObject thisObject) {
+	public StateNode checkState(GameObject thisObject, MonoBehaviour thisScript) {
 		StateNode result;
 		foreach (StateEdge edge in edges) {
-			result = edge.checkEdgeCondition(thisObject);
+			result = edge.checkEdgeCondition(thisObject, thisScript);
 
 			if (result != this) {
 				return result;

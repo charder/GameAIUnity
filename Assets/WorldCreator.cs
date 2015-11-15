@@ -12,6 +12,7 @@ public class WorldCreator { //Destroy & Print seem to be part of MonoBehavior, t
 	public Graph currentGraph;
 	public GameObject baseTile, basePoint;
 	public Sprite spriteClear, spriteImpass;
+	public string currentMap;
 
 	//Will instantiate all of the members
 	public WorldCreator() {
@@ -113,10 +114,58 @@ public class WorldCreator { //Destroy & Print seem to be part of MonoBehavior, t
 			}
 		}
 		boolTiles = connections;
+		//here we are goint to create the box for the ghosts in each map
+		if (currentMap == "hrt201n") {
+			boolTiles[69, 96] = false;
+			boolTiles[68, 96] = false;
+			boolTiles[67, 96] = false;
+			boolTiles[66, 96] = false;
+			boolTiles[66, 97] = false;
+			boolTiles[66, 98] = false;
+			boolTiles[66, 99] = false;
+			boolTiles[67, 99] = false;
+			boolTiles[68, 99] = false;
+			boolTiles[69, 99] = false;
+
+			tiles[69, 96].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[68, 96].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[67, 96].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[66, 96].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[66, 97].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[66, 98].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[66, 99].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[67, 99].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[68, 99].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[69, 99].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+
+		} else if (currentMap == "arena2") {
+			boolTiles[53, 69] = false;
+			boolTiles[52, 69] = false;
+			boolTiles[51, 69] = false;
+			boolTiles[50, 69] = false;
+			boolTiles[50, 70] = false;
+			boolTiles[50, 71] = false;
+			boolTiles[50, 72] = false;
+			boolTiles[51, 72] = false;
+			boolTiles[52, 72] = false;
+			boolTiles[53, 72] = false;
+			
+			tiles[53, 69].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[52, 69].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[51, 69].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[50, 69].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[50, 70].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[50, 71].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[50, 72].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[51, 72].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[52, 72].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+			tiles[53, 72].GetComponent<SpriteRenderer>().sprite = spriteImpass;
+		}
 	}
 	
 	//Will create all of the tiles and the representation of the word
 	public void createWorld (string fileName) {
+		currentMap = fileName;
 		int bigHeight, bigWidth;
 		bool[,] bigConnections = null;
 		currentGraph = new Graph ();

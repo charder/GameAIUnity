@@ -12,8 +12,8 @@ public class FSM {
 	}
 		
 	//Will check if the current node needs changing and do so if needed;
-	public void possibleStateChange(GameObject thisObject) {
-		currentNode = currentNode.checkState(thisObject);
+	public void possibleStateChange(GameObject thisObject, MonoBehaviour thisScript) {
+		currentNode = currentNode.checkState(thisObject, thisScript);
 	}
 
 	//Will tell the decision tree of the current node to do a behavior

@@ -13,8 +13,8 @@ public class StateEdge {
 	}
 
 	//Will check if the condition for this edge is met. If so, the end Node will be returned, else the same node will be returned
-	public StateNode checkEdgeCondition(GameObject thisObject) {
-		bool result = condition.checkCondition (thisObject);
+	public StateNode checkEdgeCondition(GameObject thisObject, MonoBehaviour thisScript) {
+		bool result = condition.checkCondition (thisObject, thisScript);
 		if (result) {
 			return endNode;
 		} else {
