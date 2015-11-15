@@ -5,13 +5,13 @@ using UnityEngine;
 public class StateNode {
 	private string name;
 	private List<StateEdge> edges;
-	private BehaviorTree tree;
+	private Behavior behav;
 
 	//A constructor that will set the name and Behavior tree of this Node and will instantiate the list of State Edges
-	public StateNode(string name_, BehaviorTree tree_) {
+	public StateNode(string name_, Behavior behav_) {
 		name = name_;
 		edges = new List<StateEdge> ();
-		tree = tree_;
+		behav = behav_;
 	}
 
 	//Will tell you the state node you should change to if needed
@@ -39,6 +39,6 @@ public class StateNode {
 
 	//Will tell the decision tree to do a behavior
 	public void performBehavior() {
-		tree.doBehavior ();
+		behav.performBehavior ();
 	}
 }
