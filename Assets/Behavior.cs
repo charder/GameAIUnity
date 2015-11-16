@@ -8,7 +8,7 @@ public abstract class Behavior {
 	public abstract void performBehavior();
 	
 	// Use this for initialization
-	public Behavior () {
+	public void findWizard () {
 		wizard = GameObject.Find ("Wizard");
 	}
 }
