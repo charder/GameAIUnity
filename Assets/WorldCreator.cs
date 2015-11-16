@@ -8,7 +8,7 @@ using System;
 public class WorldCreator { //Destroy & Print seem to be part of MonoBehavior, this is why I am extending it
 	public GameObject[,] points;
 	public GameObject[,] tiles;
-	public bool[,] boolTiles;
+	public bool[,] boolTiles, boolSuperPellets;
 	public Graph currentGraph;
 	public GameObject baseTile, basePoint;
 	public Sprite spriteClear, spriteImpass;
@@ -68,6 +68,13 @@ public class WorldCreator { //Destroy & Print seem to be part of MonoBehavior, t
 		int newWidth = width / 2;
 		
 		bool[,] connections = new bool[newHeight, newWidth];
+		bool[,] boolSuperPellets = new bool[newHeight, newWidth];
+
+		for (int i = 0; i < newHeight; i++) {
+			for (int j = 0; j < newWidth; j++) {
+				boolSuperPellets[i, j] = false;
+			}
+		}
 		
 		for (int i = 0; i < newHeight; i++) {
 			for (int j = 0; j < newWidth; j++) {
@@ -223,6 +230,7 @@ public class WorldCreator { //Destroy & Print seem to be part of MonoBehavior, t
 				}
 			}
 		}
+
 	}
 	
 	//Will create the graph treating all reachable areas as nodes

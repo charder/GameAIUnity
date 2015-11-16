@@ -5,6 +5,7 @@ public abstract class Ghost : MonoBehaviour {
 	public bool isDead;
 	public int counter, maxCounter;
 	public Vector3 pos;
+	public FSM machine;
 
 	public void setup(int x, int y) {
 		isDead = true;
@@ -14,16 +15,14 @@ public abstract class Ghost : MonoBehaviour {
 		transform.position = new Vector3 (x, y);
 	}
 
-	// Use this for initialization
-	public void Start () {
-
-	}
-	
 	// Update is called once per frame
 	public void Update () {
-		counter++;
-		if (counter == maxCounter) {
-			isDead = false;
+		if (!isDead) {
+			counter++;
+			if (counter == maxCounter) {
+				isDead = false;
+				counter = 0;
+			}
 		}
 	}
 }
