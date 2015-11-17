@@ -31,5 +31,9 @@ public abstract class Ghost : MonoBehaviour {
 				counter = 0;
 			}
 		}
+
+		//Each frame, check if we need to change our state, and then do the behavior
+		machine.possibleStateChange (this.gameObject, this);
+		machine.performBehavior ();
 	}
 }
