@@ -11,9 +11,14 @@ public class PacmanSuper : StateCondition {
 	{
 		ScPacman thePac = (ScPacman)thisScript;
 		Vector3 pacPos = wizard.pacman.pacmanPos ();
-		if (wizard.world.boolSuperPellets [(int) pacPos.y, (int) pacPos.x] == true) {
-			wizard.world.boolSuperPellets [(int) pacPos.y, (int) pacPos.x] = false;//First turn the super pellet off
-			return true;
+		int y = (int)pacPos.y;
+		int x = (int)pacPos.x;
+		bool[,] superPellets = wizard.world.boolSuperPellets;
+		if (y < superPellets.GetLength (0) && y >= 0 && x < superPellets.GetLength (1) && x >= 0) {
+			if (superPellets [y, x] != null && superPellets[y, x] == true) {
+				wizard.world.boolSuperPellets [(int) pacPos.y, (int) pacPos.x] = false;//First turn the super pellet off
+				return true;
+			}
 		}
 		return false;
 	}

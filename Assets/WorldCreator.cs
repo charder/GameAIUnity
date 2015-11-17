@@ -69,7 +69,7 @@ public class WorldCreator { //Destroy & Print seem to be part of MonoBehavior, t
 		int newWidth = width / 2;
 		
 		bool[,] connections = new bool[newHeight, newWidth];
-		bool[,] boolSuperPellets = new bool[newHeight, newWidth];
+		boolSuperPellets = new bool[newHeight, newWidth];
 
 		for (int i = 0; i < newHeight; i++) {
 			for (int j = 0; j < newWidth; j++) {
