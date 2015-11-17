@@ -5,7 +5,12 @@ public class BehavClydeDead : Behavior {
 		findWizard ();
 	}
 
+	//Send Clyde to the death box
 	public override void performBehavior() {
-		//TODO: finish this function
+		if (wizard.world.currentMap == "hrt201n") {
+			wizard.clyde.transform.position = new Vector3(98, 67, -2);
+		} else {
+			wizard.clyde.transform.position = new Vector3(71, 51, -2);
+		}
 	}
 }

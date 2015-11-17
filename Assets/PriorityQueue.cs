@@ -103,6 +103,11 @@ public class PriorityQueue {
 		return result;
 	}
 
+	//Will tell if the list of nodes is empty
+	public bool isEmpty() {
+		return openList.Count > 0;
+	}
+
 	public bool isVisited(Node node) {
 		return AddedList.ContainsKey (node.name);
 	}

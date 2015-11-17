@@ -13,6 +13,7 @@ public class WorldCreator { //Destroy & Print seem to be part of MonoBehavior, t
 	public GameObject baseTile, basePoint;
 	public Sprite spriteClear, spriteImpass;
 	public string currentMap;
+	public PriorityQueue queue;
 
 	//Will instantiate all of the members
 	public WorldCreator() {
@@ -291,5 +292,54 @@ public class WorldCreator { //Destroy & Print seem to be part of MonoBehavior, t
 				currentGraph.addEdge(node, currentGraph.getNodeByLocation(nodeHeight, nodeWidth - 1));
 			}
 		}
+	}
+
+	//Will reset all of the costs and parents of the nodes in the queue
+	public void resetGraph() {
+		foreach (Node currentNode in currentGraph.nodes.Values) {
+			currentNode.rawCost = float.MaxValue;
+			currentNode.parent = null;
+		}
+	}
+
+	//This is the method that will do A*. It returns a vector of locations to follow
+	public List<Vector3> findPath(Vector3 start, Vector3 end) {
+		List<Vector3> result = new List<Vector3> ();
+		queue = new PriorityQueue (currentGraph.getNodeByLocation ((int) start.y, (int) start.x));
+		while (!queue.isEmpty()) {
+			//The A* magic happens here
+			Node minNode = queue.pop ();
+			//if this is our ending node, stop pathfinding and form our full path on the graph
+			if (minNode == currentGraph.getNodeByLocation ((int) end.y, (int) end.x)) {
+				//Here we form the path depending
+				Node currentNode = minNode;
+				
+				while (currentNode != null) {
+					result.Insert(0, new Vector3(currentNode.widthPos, currentNode.heightPos));
+					currentNode = currentNode.parent;
+				}
+				break;
+			}
+			//else, we need to update our priority queue, etc.
+			else {
+				float currentRaw = minNode.rawCost;
+				foreach (Node neighbor in minNode.edges.Values) {
+					if (queue.isVisited(neighbor)) {
+						float oldRaw = neighbor.rawCost;
+						float newRaw = currentRaw + Vector2.Distance(new Vector2(minNode.widthPos, minNode.heightPos), new Vector2(neighbor.widthPos, neighbor.heightPos));
+						if (newRaw < oldRaw) {
+							neighbor.rawCost = newRaw;
+							neighbor.parent = minNode;
+						}
+					} else {
+						neighbor.rawCost = currentRaw + Vector2.Distance(new Vector2(minNode.widthPos, minNode.heightPos), new Vector2(neighbor.widthPos, neighbor.heightPos));
+						neighbor.parent = minNode;
+						queue.insert(neighbor);
+					}
+				}
+			}
+		}
+		resetGraph ();
+		return result;
 	}
 }

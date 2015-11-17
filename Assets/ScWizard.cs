@@ -17,29 +17,29 @@ public class ScWizard : MonoBehaviour {
 	public void placeWorldCharacters() {
 		if (world.currentMap == "hrt201n") {
 			blinky.transform.position = new Vector3(97, 68, -2);
-			blinky.pos = new Vector3(97, 68);
+			//blinky.pos = new Vector3(97, 68);//TODO: I commented these out (I do not think they are necessary and some of them are wrong anyways :P)
 			pinky.transform.position = new Vector3(98, 68, -2);
-			blinky.pos = new Vector3(98, 68);
+			//blinky.pos = new Vector3(98, 68);
 			inky.transform.position = new Vector3(97, 67, -2);
-			inky.pos = new Vector3(97, 67);
+			//inky.pos = new Vector3(97, 67);
 			clyde.transform.position = new Vector3(98, 67, -2);
-			clyde.pos = new Vector3(98, 67);
+			//clyde.pos = new Vector3(98, 67);
 
 			pacman.transform.position = new Vector3(97, 65, -2);
 			pacman.pos = new Vector3(97, 65);
 
 		} else if (world.currentMap == "arena2") {
 			blinky.transform.position = new Vector3(70, 52, -2);
-			blinky.pos = new Vector3(70, 52);
+			//blinky.pos = new Vector3(70, 52);
 			pinky.transform.position = new Vector3(71, 52, -2);
-			blinky.pos = new Vector3(71, 52);
+			//blinky.pos = new Vector3(71, 52);
 			inky.transform.position = new Vector3(70, 51, -2);
-			inky.pos = new Vector3(60, 51);
+			//inky.pos = new Vector3(60, 51);
 			clyde.transform.position = new Vector3(71, 51, -2);
-			clyde.pos = new Vector3(71, 51);
+			//clyde.pos = new Vector3(71, 51);
 
 			pacman.transform.position = new Vector3(70, 49, -2);
-			pacman.pos = new Vector3(70, 49, -2);
+			//pacman.pos = new Vector3(70, 49, -2);
 		}
 	}
 

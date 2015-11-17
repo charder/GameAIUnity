@@ -5,7 +5,12 @@ public class BehavInkyDead : Behavior {
 		findWizard ();
 	}
 
+	//Send Inky to the death box
 	public override void performBehavior() {
-		//TODO: finish this function
+		if (wizard.world.currentMap == "hrt201n") {
+			wizard.inky.transform.position = new Vector3(97, 67, -2);
+		} else {
+			wizard.inky.transform.position = new Vector3(70, 51, -2);
+		}
 	}
 }

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ScPacman : MonoBehaviour {
 	public bool isSuper;
-	public Vector3 pos;
+	//public Vector3 pos;TODO: Do not think we need this
 	public int superCouter, maxSuperCounter;
 	//TODO: Create all of the FSM Nodes and edges, BehaviorTree nodes for each FSM Node
 
