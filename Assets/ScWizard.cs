@@ -26,7 +26,7 @@ public class ScWizard : MonoBehaviour {
 			//clyde.pos = new Vector3(98, 67);
 
 			pacman.transform.position = new Vector3(97, 65, -2);
-			pacman.pos = new Vector3(97, 65);
+			//pacman.pos = new Vector3(97, 65);
 
 		} else if (world.currentMap == "arena2") {
 			blinky.transform.position = new Vector3(70, 52, -2);

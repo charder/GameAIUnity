@@ -18,7 +18,7 @@ public abstract class Ghost : MonoBehaviour {
 	}
 
 	//Will find what location PacMan is closest to and return this value as a Vector
-	public Vector3 pamanPos() {
+	public Vector3 pacmanPos() {
 		return new Vector3(Mathf.Round(wizard.pacman.transform.position.x), Mathf.Round(wizard.pacman.transform.position.y));
 	}
 

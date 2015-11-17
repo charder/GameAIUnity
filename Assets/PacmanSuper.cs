@@ -10,8 +10,9 @@ public class PacmanSuper : StateCondition {
 	public override bool checkCondition(GameObject thisobject, MonoBehaviour thisScript)
 	{
 		ScPacman thePac = (ScPacman)thisScript;
-		if (wizard.world.boolSuperPellets [(int) thePac.pos.y, (int) thePac.pos.x] == true) {
-			wizard.world.boolSuperPellets [(int) thePac.pos.y, (int) thePac.pos.x] = false;//First turn the super pellet off
+		Vector3 pacPos = wizard.pacman.pacmanPos ();
+		if (wizard.world.boolSuperPellets [(int) pacPos.y, (int) pacPos.x] == true) {
+			wizard.world.boolSuperPellets [(int) pacPos.y, (int) pacPos.x] = false;//First turn the super pellet off
 			return true;
 		}
 		return false;
