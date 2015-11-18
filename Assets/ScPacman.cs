@@ -8,6 +8,10 @@ public class ScPacman : MonoBehaviour {
 	public ScWizard wizard;
 	public FSM machine;
 	public int points;
+	Sprite spr_blinky;
+	Sprite spr_pinky;
+	Sprite spr_inky;
+	Sprite spr_clyde;
 
 	//Will find what location PacMan is closest to and return this value as a Vector
 	public Vector3 pacmanPos() {
@@ -31,6 +35,12 @@ public class ScPacman : MonoBehaviour {
 		machine = new FSM (normal);
 
 		points = 0;
+
+		//Loads sprites for ghosts used below
+		spr_blinky = Resources.Load <Sprite> ("Blinky");
+		spr_pinky = Resources.Load <Sprite> ("Pinky");
+		spr_inky = Resources.Load <Sprite> ("Inky");
+		spr_clyde = Resources.Load <Sprite> ("Clyde");
 	}
 
 	// Update is called once per frame
@@ -38,6 +48,10 @@ public class ScPacman : MonoBehaviour {
 		if (isSuper) {
 			superCouter++;
 			if (superCouter == maxSuperCounter) {
+				wizard.blinky.GetComponent<SpriteRenderer>().sprite = spr_blinky;
+				wizard.pinky.GetComponent<SpriteRenderer>().sprite = spr_pinky;
+				wizard.inky.GetComponent<SpriteRenderer>().sprite = spr_inky;
+				wizard.clyde.GetComponent<SpriteRenderer>().sprite = spr_clyde;
 				isSuper = false;
 				superCouter = 0;
 			}
@@ -50,7 +64,7 @@ public class ScPacman : MonoBehaviour {
 		}
 
 		//Each frame, check if we need to change our state, and then do the behavior
-		if (behaviorCounter == 20) {
+		if (behaviorCounter == 10) {
 			machine.possibleStateChange (this.gameObject, this);
 			machine.performBehavior ();
 			behaviorCounter = 0;
