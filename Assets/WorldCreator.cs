@@ -258,35 +258,43 @@ public class WorldCreator { //Destroy & Print seem to be part of MonoBehavior, t
 			bool isRight = nodeWidth < (width - 1);
 			bool isDown = nodeHeight < (height - 1);
 			bool isLeft = nodeWidth > 0;
-			
+
+			/*
 			//We need to check upper left pos
 			if (isUp && isLeft && boolTiles[nodeHeight - 1, nodeWidth - 1]) {
 				currentGraph.addEdge(node, currentGraph.getNodeByLocation(nodeHeight - 1, nodeWidth - 1));
 			}
+			*/
 			//We need to check upper pos
 			if (isUp && boolTiles[nodeHeight - 1, nodeWidth]) {
 				currentGraph.addEdge(node, currentGraph.getNodeByLocation(nodeHeight - 1, nodeWidth));
 			}
+			/*
 			//We need to check upper right pos
 			if (isUp && isRight && boolTiles[nodeHeight - 1, nodeWidth + 1]) {
 				currentGraph.addEdge(node, currentGraph.getNodeByLocation(nodeHeight - 1, nodeWidth + 1));
 			}
+			*/
 			//We need to check right pos
 			if (isRight && boolTiles[nodeHeight, nodeWidth + 1]) {
 				currentGraph.addEdge(node, currentGraph.getNodeByLocation(nodeHeight, nodeWidth + 1));
 			}
+			/*
 			//We need to check lower right pos
 			if (isDown && isRight && boolTiles[nodeHeight + 1, nodeWidth + 1]) {
 				currentGraph.addEdge(node, currentGraph.getNodeByLocation(nodeHeight + 1, nodeWidth + 1));
 			}
+			*/
 			//We need to check lower pos
 			if (isDown && boolTiles[nodeHeight + 1, nodeWidth]) {
 				currentGraph.addEdge(node, currentGraph.getNodeByLocation(nodeHeight + 1, nodeWidth));
 			}
+			/*
 			//We need to check lower left pos
 			if (isDown && isLeft && boolTiles[nodeHeight + 1, nodeWidth - 1]) {
 				currentGraph.addEdge(node, currentGraph.getNodeByLocation(nodeHeight + 1, nodeWidth - 1));
 			}
+			*/
 			//We need to check left pos
 			if (isLeft && boolTiles[nodeHeight, nodeWidth - 1]) {
 				currentGraph.addEdge(node, currentGraph.getNodeByLocation(nodeHeight, nodeWidth - 1));

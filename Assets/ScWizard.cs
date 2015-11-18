@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 
 //The wizard is responsible for creating the GUI, forming the World, and holding references to other GameObjects. Not going to lie, he is a busy man.
@@ -64,10 +65,11 @@ public class ScWizard : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		GUI.Box(new Rect(10,10,150,100), "");
+		GUI.Box(new Rect(10,10,150,130), "");
 		GUI.Label (new Rect (20, 10, 130, 20), "File to Use:");
 		bool setHrtWorld = GUI.Button (new Rect (20, 40, 130, 20), "hrt201n");
 		bool setArenaWorld = GUI.Button (new Rect (20, 70, 130, 20), "arena2");
+		GUI.Label (new Rect (20, 100, 130, 20), "PacMan Points: " + Convert.ToString(pacman.points));
 
 		//Check if we need to reload our world
 		if (setHrtWorld) {

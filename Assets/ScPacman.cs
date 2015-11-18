@@ -7,6 +7,7 @@ public class ScPacman : MonoBehaviour {
 	public int superCouter, maxSuperCounter;
 	public ScWizard wizard;
 	public FSM machine;
+	public int points;
 
 	//Will find what location PacMan is closest to and return this value as a Vector
 	public Vector3 pacmanPos() {
@@ -27,6 +28,8 @@ public class ScPacman : MonoBehaviour {
 		normal.addEdge (new StateEdge(normal, dead, new PacmanDead ()));
 		beSuper.addEdge (new StateEdge(beSuper, normal, new PacmanNormalize ()));
 		machine = new FSM (normal);
+
+		points = 0;
 	}
 
 	// Update is called once per frame
@@ -37,6 +40,12 @@ public class ScPacman : MonoBehaviour {
 				isSuper = false;
 				superCouter = 0;
 			}
+		}
+
+		//Here is where we eat pellets (This happens independently of state)
+		if (wizard.world.points [(int) transform.position.y, (int) transform.position.x] != null) {
+			Destroy(wizard.world.points [(int) transform.position.y, (int) transform.position.x]);
+			points += 1;
 		}
 
 		//Each frame, check if we need to change our state, and then do the behavior

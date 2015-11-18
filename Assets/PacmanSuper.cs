@@ -15,7 +15,7 @@ public class PacmanSuper : StateCondition {
 		int x = (int)pacPos.x;
 		bool[,] superPellets = wizard.world.boolSuperPellets;
 		if (y < superPellets.GetLength (0) && y >= 0 && x < superPellets.GetLength (1) && x >= 0) {
-			if (superPellets [y, x] != null && superPellets[y, x] == true) {
+			if (superPellets[y, x] == true) {
 				wizard.world.boolSuperPellets [(int) pacPos.y, (int) pacPos.x] = false;//First turn the super pellet off
 				return true;
 			}
