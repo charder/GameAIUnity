@@ -218,6 +218,8 @@ public class WorldCreator { //Destroy & Print seem to be part of MonoBehavior, t
 		}
 		shrinkify(bigConnections);
 		createPoints ();
+		createGraph ();
+		resetGraph ();
 	}
 
 
@@ -311,9 +313,11 @@ public class WorldCreator { //Destroy & Print seem to be part of MonoBehavior, t
 	}
 
 	//This is the method that will do A*. It returns a vector of locations to follow
-	public List<Vector3> findPath(Vector3 start, Vector3 end) {
-		List<Vector3> result = new List<Vector3> ();
-		queue = new PriorityQueue (currentGraph.getNodeByLocation ((int) start.y, (int) start.x));
+	public LinkedList<Vector3> findPath(Vector3 start, Vector3 end) {
+		LinkedList<Vector3> result = new LinkedList<Vector3> ();
+		Node startNode = currentGraph.getNodeByLocation ((int)start.y, (int)start.x);
+		startNode.rawCost = 0.0f;
+		queue = new PriorityQueue (startNode);
 		while (!queue.isEmpty()) {
 			//The A* magic happens here
 			Node minNode = queue.pop ();
@@ -323,10 +327,11 @@ public class WorldCreator { //Destroy & Print seem to be part of MonoBehavior, t
 				Node currentNode = minNode;
 				
 				while (currentNode != null) {
-					result.Insert(0, new Vector3(currentNode.widthPos, currentNode.heightPos));
+					result.AddFirst(new Vector3(currentNode.widthPos, currentNode.heightPos));
 					currentNode = currentNode.parent;
 				}
-				break;
+				resetGraph();
+				return result;
 			}
 			//else, we need to update our priority queue, etc.
 			else {

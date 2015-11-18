@@ -99,13 +99,14 @@ public class PriorityQueue {
 
 		openList[0] = openList [openList.Count - 1];
 		openList.RemoveAt(openList.Count - 1);
+		moveDown ();
 
 		return result;
 	}
 
 	//Will tell if the list of nodes is empty
 	public bool isEmpty() {
-		return openList.Count > 0;
+		return openList.Count <= 0;
 	}
 
 	public bool isVisited(Node node) {

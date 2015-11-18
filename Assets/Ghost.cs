@@ -24,7 +24,7 @@ public abstract class Ghost : MonoBehaviour {
 
 	// Update is called once per frame
 	public void Update () {
-		if (!isDead) {
+		if (isDead) {
 			counter++;
 			if (counter == maxCounter) {
 				isDead = false;

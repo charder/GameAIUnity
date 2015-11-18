@@ -76,10 +76,12 @@ public class ScWizard : MonoBehaviour {
 			world.cleanUpGraph();
 			world.createWorld ("hrt201n");
 			placeWorldCharacters();
+			pacman.points = 0;
 		} else if (setArenaWorld) {
 			world.cleanUpGraph();
 			world.createWorld ("arena2");
 			placeWorldCharacters();
+			pacman.points = 0;
 		}
 	}
 }
