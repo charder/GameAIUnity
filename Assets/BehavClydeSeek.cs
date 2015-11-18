@@ -32,6 +32,5 @@ public class BehavClydeSeek : Behavior {
 				wizard.clyde.transform.position = new Vector3(wizard.clyde.transform.position.x - 1, this.wizard.clyde.transform.position.y,-2);
 			}
 		}
-		//TODO: finish this function
 	}
 }
