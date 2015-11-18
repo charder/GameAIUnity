@@ -8,6 +8,10 @@ public class BehavPacmanPower : Behavior {
 		findWizard ();
 	}
 
+	public override void notifyChange() {
+		path = null;
+	}
+
 	public override void performBehavior() {
 		if (path == null || path.Count <= 0) {
 			string ghost = "";

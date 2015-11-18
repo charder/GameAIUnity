@@ -5,6 +5,10 @@ public class BehavClydeDead : Behavior {
 		findWizard ();
 	}
 
+	public override void notifyChange() {
+		//DO nothing
+	}
+
 	//Send Clyde to the death box
 	public override void performBehavior() {
 		if (wizard.world.currentMap == "hrt201n") {

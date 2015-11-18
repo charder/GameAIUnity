@@ -5,8 +5,17 @@ public class BehavPacmanDead : Behavior {
 	public BehavPacmanDead() {
 		findWizard ();
 	}
-	
+
+	public override void notifyChange() {
+		//DO nothing
+	}
+
 	public override void performBehavior() {
-		//TODO: finish this function
+		wizard.softReset ();
+		wizard.pacman.softReset ();
+		wizard.blinky.softReset ();
+		wizard.pinky.softReset ();
+		wizard.inky.softReset ();
+		wizard.clyde.softReset ();
 	}
 }

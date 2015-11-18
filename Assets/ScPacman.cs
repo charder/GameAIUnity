@@ -20,11 +20,22 @@ public class ScPacman : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		softReset ();
+
+		wizard = GameObject.Find ("Wizard").GetComponent<ScWizard> ();
+
+		//Loads sprites for ghosts used below
+		spr_blinky = Resources.Load <Sprite> ("Blinky");
+		spr_pinky = Resources.Load <Sprite> ("Pinky");
+		spr_inky = Resources.Load <Sprite> ("Inky");
+		spr_clyde = Resources.Load <Sprite> ("Clyde");
+	}
+
+	public void softReset() {
 		isSuper = false;
 		superCouter = 0;
 		maxSuperCounter = 150;
 		behaviorCounter = 0;
-		wizard = GameObject.Find ("Wizard").GetComponent<ScWizard> ();
 
 		StateNode dead = new StateNode ("Dead", new BehavPacmanDead() );
 		StateNode normal = new StateNode ("Normal", new BehavPacmanEat ());
@@ -33,14 +44,8 @@ public class ScPacman : MonoBehaviour {
 		normal.addEdge (new StateEdge(normal, dead, new PacmanDead ()));
 		beSuper.addEdge (new StateEdge(beSuper, normal, new PacmanNormalize ()));
 		machine = new FSM (normal);
-
+		
 		points = 0;
-
-		//Loads sprites for ghosts used below
-		spr_blinky = Resources.Load <Sprite> ("Blinky");
-		spr_pinky = Resources.Load <Sprite> ("Pinky");
-		spr_inky = Resources.Load <Sprite> ("Inky");
-		spr_clyde = Resources.Load <Sprite> ("Clyde");
 	}
 
 	// Update is called once per frame

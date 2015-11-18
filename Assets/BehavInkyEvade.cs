@@ -10,6 +10,11 @@ public class BehavInkyEvade : Behavior {
 		pathCounter = 10;
 	}
 
+	public override void notifyChange() {
+		pathCounter = 10;
+		path = null;
+	}
+
 	public override void performBehavior() {
 		if (pathCounter == 10 || path.Count == 0) {
 			path = wizard.world.findPath (wizard.inky.transform.position, wizard.pacman.transform.position);

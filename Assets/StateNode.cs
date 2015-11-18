@@ -37,6 +37,11 @@ public class StateNode {
 		edges.Add (edge);
 	}
 
+	//Will reset any of the variables in a behavior
+	public void notifyChange() {
+		behav.notifyChange ();
+	}
+
 	//Will tell the decision tree to do a behavior
 	public void performBehavior() {
 		behav.performBehavior ();

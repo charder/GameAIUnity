@@ -8,6 +8,12 @@ public class GhostDie : StateCondition {
 
 	public override bool checkCondition(GameObject thisobject, MonoBehaviour thisScript)
 	{
-		return (Vector3.Distance (thisobject.transform.position, wizard.pacman.transform.position) < 1 && wizard.pacman.isSuper);
+		bool result = Vector3.Distance (thisobject.transform.position, wizard.pacman.transform.position) < 1 && wizard.pacman.isSuper;
+		if (result) {
+			Ghost spooky = (Ghost) thisScript;
+			spooky.isDead = true;
+			return true;
+		}
+		return false;
 	}
 }

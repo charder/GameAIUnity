@@ -16,6 +16,7 @@ public class StateEdge {
 	public StateNode checkEdgeCondition(GameObject thisObject, MonoBehaviour thisScript) {
 		bool result = condition.checkCondition (thisObject, thisScript);
 		if (result) {
+			fromNode.notifyChange();
 			return endNode;
 		} else {
 			return fromNode;

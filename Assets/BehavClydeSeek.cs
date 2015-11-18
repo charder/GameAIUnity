@@ -5,6 +5,10 @@ public class BehavClydeSeek : Behavior {
 		findWizard ();
 	}
 
+	public override void notifyChange() {
+		//DO nothing
+	}
+
 	public override void performBehavior() {
 		int random_int = Mathf.FloorToInt(Random.Range (0, 4));
 		if (random_int == 0) { //move Clyde Up

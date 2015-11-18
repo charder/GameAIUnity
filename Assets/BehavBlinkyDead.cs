@@ -5,6 +5,10 @@ public class BehavBlinkyDead : Behavior {
 		findWizard ();
 	}
 
+	public override void notifyChange() {
+		//Nothing needed
+	}
+
 	//Send Blinky to the death box
 	public override void performBehavior() {
 		if (wizard.world.currentMap == "hrt201n") {

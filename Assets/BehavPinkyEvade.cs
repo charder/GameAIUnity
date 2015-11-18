@@ -5,6 +5,10 @@ public class BehavPinkyEvade : Behavior {
 		findWizard ();
 	}
 
+	public override void notifyChange() {
+		//Nothing needed
+	}
+
 	public override void performBehavior() {
 		int diffX = (int)wizard.pacman.transform.position.x - (int)wizard.pinky.transform.position.x;
 		int diffY = (int)wizard.pacman.transform.position.y - (int)wizard.pinky.transform.position.y;

@@ -44,6 +44,37 @@ public class ScWizard : MonoBehaviour {
 		}
 	}
 
+	//Will put a super pellet on the tile that is clicked on
+	public void makeSuperPoint() {
+		Vector3 pos = Input.mousePosition;
+		if (pos.x > 160 || pos.y < Screen.height - 150) {
+			pos.z = 10.0f;
+			pos = Camera.main.ScreenToWorldPoint (pos);
+
+			int closestHeight = -1;
+			int closestWidth = -1;
+			float dist = 1.0f;
+			
+			for (int i = 0; i < world.points.GetLength(0); i++) {
+				for (int j = 0; j < world.points.GetLength(1); j++) {
+					if (world.points [i, j] != null) {
+						float currentDist = Vector2.Distance (new Vector2 (world.points [i, j].transform.position.x, world.points [i, j].transform.position.y), new Vector2 (pos.x, pos.y));
+						if (currentDist < dist) {
+							dist = currentDist;
+							closestHeight = i;
+							closestWidth = j;
+						}
+					}
+				}
+			}
+
+			if (closestWidth != -1 && closestHeight != -1) {
+				world.points[closestHeight, closestWidth].GetComponent<SpriteRenderer>().sprite = basePowerPoint.GetComponent<SpriteRenderer>().sprite;
+				world.boolSuperPellets[closestHeight, closestWidth] = true;
+			}
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 		pacman = GameObject.Find("Pacman").GetComponent<ScPacman>();
@@ -53,15 +84,25 @@ public class ScWizard : MonoBehaviour {
 		clyde = GameObject.Find ("Clyde").GetComponent<ScClyde>();
 
 		basePowerPoint = GameObject.Find ("PowerPoint");
+
+		softReset ();
+	}
+
+	public void softReset() {
+		if (world != null) {
+			world.cleanUpGraph ();
+		}
 		world = new WorldCreator ();
 		world.createWorld ("hrt201n");
-
+		
 		placeWorldCharacters ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (Input.GetMouseButtonDown (0)) {	//If the user left clicks, find start node
+			makeSuperPoint();
+		}
 	}
 
 	void OnGUI() {

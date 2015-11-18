@@ -11,7 +11,7 @@ public abstract class Ghost : MonoBehaviour {
 	public ScWizard wizard;
 
 	public void setup(int x, int y) {
-		isDead = true;
+		isDead = false;
 		maxCounter = 150;
 		counter = 0;
 		behaviorCounter = 0;
