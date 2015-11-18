@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public abstract class Ghost : MonoBehaviour {
 	public bool isDead;
-	public int counter, maxCounter;
+	public int counter, maxCounter, behaviorCounter;
 	//public Vector3 pos;TODO: I do not think we will use this
 	public FSM machine;
 	public List<Vector3> path;
@@ -14,6 +14,7 @@ public abstract class Ghost : MonoBehaviour {
 		isDead = true;
 		maxCounter = 150;
 		counter = 0;
+		behaviorCounter = 0;
 		wizard = GameObject.Find ("Wizard").GetComponent<ScWizard> ();
 	}
 
@@ -33,7 +34,13 @@ public abstract class Ghost : MonoBehaviour {
 		}
 
 		//Each frame, check if we need to change our state, and then do the behavior
-		machine.possibleStateChange (this.gameObject, this);
-		machine.performBehavior ();
+		if (behaviorCounter == 20) {
+			machine.possibleStateChange (this.gameObject, this);
+			machine.performBehavior ();
+			behaviorCounter = 0;
+		} else {
+			behaviorCounter++;
+		}
+
 	}
 }

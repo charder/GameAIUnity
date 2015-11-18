@@ -6,6 +6,8 @@ public class BehavPacmanEat : Behavior {
 	}
 
 	public override void performBehavior() {
-		//TODO: finish this function
+		float dist = float.MaxValue;
+
+
 	}
 }

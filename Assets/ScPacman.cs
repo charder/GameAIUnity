@@ -4,7 +4,7 @@ using System.Collections;
 public class ScPacman : MonoBehaviour {
 	public bool isSuper;
 	//public Vector3 pos;TODO: Do not think we need this
-	public int superCouter, maxSuperCounter;
+	public int superCouter, maxSuperCounter, behaviorCounter;
 	public ScWizard wizard;
 	public FSM machine;
 	public int points;
@@ -19,6 +19,7 @@ public class ScPacman : MonoBehaviour {
 		isSuper = false;
 		superCouter = 0;
 		maxSuperCounter = 150;
+		behaviorCounter = 0;
 		wizard = GameObject.Find ("Wizard").GetComponent<ScWizard> ();
 
 		StateNode dead = new StateNode ("Dead", new BehavPacmanDead() );
@@ -49,7 +50,12 @@ public class ScPacman : MonoBehaviour {
 		}
 
 		//Each frame, check if we need to change our state, and then do the behavior
-		machine.possibleStateChange (this.gameObject, this);
-		machine.performBehavior ();
+		if (behaviorCounter == 20) {
+			machine.possibleStateChange (this.gameObject, this);
+			machine.performBehavior ();
+			behaviorCounter = 0;
+		} else {
+			behaviorCounter++;
+		}
 	}
 }
