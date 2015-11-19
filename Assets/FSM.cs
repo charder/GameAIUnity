@@ -4,7 +4,7 @@ using UnityEngine;
 //FSM represents a finite state machine. Internally it stores the active node in an FSM and functions to see if the 
 //	active node needs to change and to perform the behavior associated with the active node
 public class FSM {
-	private StateNode currentNode;
+	public StateNode currentNode;
 
 	//constructor will set the current Node;
 	public FSM(StateNode start) {

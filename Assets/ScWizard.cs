@@ -75,6 +75,37 @@ public class ScWizard : MonoBehaviour {
 		}
 	}
 
+	//Will move Pacman to the closest open clicked point, allows for better AI testing
+	public void movePacman() {
+		Vector3 pos = Input.mousePosition;
+		if (pos.x > 160 || pos.y < Screen.height - 150) {
+			pos.z = 10.0f;
+			pos = Camera.main.ScreenToWorldPoint (pos);
+			
+			int closestHeight = -1;
+			int closestWidth = -1;
+			float dist = 1.0f;
+			
+			for (int i = 0; i < world.boolTiles.GetLength(0); i++) {
+				for (int j = 0; j < world.boolTiles.GetLength(1); j++) {
+					if (world.boolTiles [i, j]) {
+						float currentDist = Vector2.Distance (new Vector2 (j, i), new Vector2 (pos.x, pos.y));
+						if (currentDist < dist) {
+							dist = currentDist;
+							closestHeight = i;
+							closestWidth = j;
+						}
+					}
+				}
+			}
+			
+			if (closestWidth != -1 && closestHeight != -1) {
+				pacman.transform.position = new Vector3 (closestWidth, closestHeight, -2);
+				pacman.GetComponent<ScPacman>().machine.currentNode.notifyChange();
+			}
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 		pacman = GameObject.Find("Pacman").GetComponent<ScPacman>();
@@ -94,7 +125,7 @@ public class ScWizard : MonoBehaviour {
 		}
 		world = new WorldCreator ();
 		world.createWorld ("hrt201n");
-		
+
 		placeWorldCharacters ();
 	}
 	
@@ -102,6 +133,9 @@ public class ScWizard : MonoBehaviour {
 	void Update () {
 		if (Input.GetMouseButtonDown (0)) {	//If the user left clicks, find start node
 			makeSuperPoint();
+		}
+		if (Input.GetMouseButtonDown (1)) {//If the user right clicks, moves pacman 
+			movePacman();
 		}
 	}
 
@@ -114,11 +148,15 @@ public class ScWizard : MonoBehaviour {
 
 		//Check if we need to reload our world
 		if (setHrtWorld) {
+			pacman.GetComponent<ScPacman>().machine.currentNode.notifyChange();
+			blinky.GetComponent<ScBlinky> ().machine.currentNode.notifyChange ();
 			world.cleanUpGraph();
 			world.createWorld ("hrt201n");
 			placeWorldCharacters();
 			pacman.points = 0;
 		} else if (setArenaWorld) {
+			pacman.GetComponent<ScPacman>().machine.currentNode.notifyChange();
+			blinky.GetComponent<ScBlinky> ().machine.currentNode.notifyChange ();
 			world.cleanUpGraph();
 			world.createWorld ("arena2");
 			placeWorldCharacters();
